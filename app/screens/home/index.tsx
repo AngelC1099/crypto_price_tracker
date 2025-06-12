@@ -16,14 +16,15 @@ import { Coin } from "../../../types/coin.type";
 const HomeScreen = () => {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState<Coin[]>([]);
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const coins = await fetchMarketData();
         setCoins(coins);
-      } catch (error) {
-        console.error("Error fetching coins:", error);
+      } catch {
+        setError("Error fetching coins! Try in a few minutes");
       } finally {
         setLoading(false);
       }
@@ -35,6 +36,14 @@ const HomeScreen = () => {
     return (
       <View style={styles.loader}>
         <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.loader}>
+        <Text>{error}</Text>
       </View>
     );
   }

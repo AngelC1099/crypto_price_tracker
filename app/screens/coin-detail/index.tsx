@@ -18,6 +18,7 @@ import { LineChart } from "react-native-chart-kit";
 const CoinDetailScreen = () => {
   const { coinId } = useLocalSearchParams();
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [coin, setCoin] = useState<Coin | undefined>(undefined);
   const [coinChartData, setCoinChartData] = useState<ChartDataPoint[]>([]);
   const [dimensions, setDimensions] = useState<{
@@ -26,29 +27,19 @@ const CoinDetailScreen = () => {
   }>({ width: 0, height: 0 });
 
   useEffect(() => {
-    const getCoinDetail = async () => {
+    const getCoinData = async () => {
       try {
         const coin = await fetchCoinDetail(coinId as string);
         setCoin(coin);
-      } catch (error) {
-        console.error("Error fetching coins:", error);
+        const coinChartData = await fetchCoinMarketChart(coinId as string);
+        setCoinChartData(coinChartData);
+      } catch {
+        setError("Error fetching coins! Try in a few minutes.");
       } finally {
         setLoading(false);
       }
     };
-    getCoinDetail();
-  }, [coinId]);
-
-  useEffect(() => {
-    const getCoinMarketChart = async () => {
-      try {
-        const coinChartData = await fetchCoinMarketChart(coinId as string);
-        setCoinChartData(coinChartData);
-      } catch (error) {
-        console.error("Error fetching coins:", error);
-      }
-    };
-    getCoinMarketChart();
+    getCoinData();
   }, [coinId]);
 
   const onLayout = (event: LayoutChangeEvent) => {
@@ -67,7 +58,7 @@ const CoinDetailScreen = () => {
   if (!coin) {
     return (
       <View style={styles.loader}>
-        <Text>No se pudo cargar la información de la moneda.</Text>
+        <Text>{error}</Text>
       </View>
     );
   }
