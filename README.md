@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# 📈 Crypto Price Tracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A beautiful and mobile-friendly **React Native** application that displays real-time cryptocurrency prices with charts and details. Built using **CoinGecko API**, **axios**, and **react-native-chart-kit**, this app provides a clean interface for tracking top coins like BTC, ETH, and more.
 
-## Get started
+![Preview](./assets/screenshots/home-screen.jpg)
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🚀 Features
 
-2. Start the app
+- 🔄 Live price updates from [CoinGecko](https://www.coingecko.com/en/api)
+- 📊 Interactive charts for price trends (7D)
+- 📱 Beautiful and responsive UI with themed coin detail screens
+- 🔍 View detailed information: current price, market cap, volume, price change %, etc.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 📸 Screenshots
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Home | Coin Details |
+|------|--------------|
+| ![Home](./assets/screenshots/home-screen.jpg) | ![Details](./assets/screenshots/coin-detail-screen.jpg) |
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🧱 Tech Stack
 
-When you're ready, run:
+- **React Native** (with Expo)
+- **TypeScript**
+- **axios** (for API requests)
+- **react-native-chart-kit** (for chart rendering)
+- **expo-router** (for screen navigation)
+- **CoinGecko API** (for real-time market data)
+
+---
+
+## 🧪 Installation
 
 ```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+git clone https://github.com/AngelC1099/crypto-price-tracker.git
+cd crypto-price-tracker
+npm install
+npx expo start
