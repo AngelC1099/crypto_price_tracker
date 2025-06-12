@@ -1,7 +1,17 @@
+import { fetchMarketData } from "@/apis/coingecko.api";
+import { formatToMoney } from "@/utils/string-formatter";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, View, StyleSheet, Text, Image, ScrollView } from "react-native";
-import { Coin } from "../../types/coin.type";
-import { fetchMarketData } from "@/app/apis/coingecko.api";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Coin } from "../../../types/coin.type";
 
 const HomeScreen = () => {
   const [loading, setLoading] = useState(true);
@@ -32,13 +42,28 @@ const HomeScreen = () => {
   return (
     <ScrollView>
       {coins.map((c, index) => (
-        <View key={index} style={styles.rowContainer}>
+        <TouchableOpacity
+          key={index}
+          style={styles.rowContainer}
+          onPress={() =>
+            router.push({
+              pathname: "/screens/coin-detail",
+              params: { coinId: c.id },
+            })
+          }
+        >
           <Image source={{ uri: c.image }} style={styles.icon} />
           <View style={styles.info}>
             <Text style={styles.name}>
               {c.name} ({c.symbol.toUpperCase()})
             </Text>
-            <Text style={styles.price}>${c.current_price.toFixed(2)}</Text>
+            <Text style={styles.price}>
+              $
+              {formatToMoney(c.current_price, {
+                minDecimals: 2,
+                maxDecimals: 2,
+              })}
+            </Text>
           </View>
           <Text
             style={[
@@ -48,13 +73,17 @@ const HomeScreen = () => {
               },
             ]}
           >
-            {c.price_change_percentage_24h.toFixed(2)}%
+            {formatToMoney(c.price_change_percentage_24h, {
+              minDecimals: 2,
+              maxDecimals: 2,
+            })}
+            %
           </Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   loader: { flex: 1, justifyContent: "center", alignItems: "center" },
