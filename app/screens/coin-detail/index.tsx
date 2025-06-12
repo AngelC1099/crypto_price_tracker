@@ -160,8 +160,8 @@ const CoinDetailScreen = () => {
                 yAxisLabel="$"
                 yAxisSuffix=""
                 chartConfig={{
-                  backgroundGradientFrom: "#c9e2f7",
-                  backgroundGradientTo: "#c9e8f7",
+                  backgroundGradientFrom: "#ced4d4",
+                  backgroundGradientTo: "#c8ceda",
                   decimalPlaces: 2,
                   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                   labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
@@ -171,7 +171,7 @@ const CoinDetailScreen = () => {
                   propsForDots: {
                     r: "6",
                     strokeWidth: "2",
-                    stroke: "#98a1f6",
+                    stroke: "#7e8baa",
                   },
                 }}
                 bezier
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 24,
     paddingTop: StatusBar.currentHeight! + 24,
-    backgroundColor: "#cbe1f5",
+    backgroundColor: "#eff1f1",
   },
   headerContainer: {
     flexDirection: "row",
