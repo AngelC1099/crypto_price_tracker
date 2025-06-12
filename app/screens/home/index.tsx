@@ -63,10 +63,11 @@ const HomeScreen = () => {
             }
           >
             <Image source={{ uri: c.image }} style={styles.icon} />
-            <View style={styles.info}>
-              <Text style={styles.name}>
-                {c.name} ({c.symbol.toUpperCase()})
-              </Text>
+            <View style={styles.infoContainer}>
+              <Text style={styles.name}>{c.name}</Text>
+              <Text style={styles.symbol}>({c.symbol.toUpperCase()})</Text>
+            </View>
+            <View style={styles.priceContainer}>
               <Text style={styles.price}>
                 $
                 {formatToMoney(c.current_price, {
@@ -74,21 +75,21 @@ const HomeScreen = () => {
                   maxDecimals: 2,
                 })}
               </Text>
+              <Text
+                style={[
+                  styles.change,
+                  {
+                    color: c.price_change_percentage_24h >= 0 ? "green" : "red",
+                  },
+                ]}
+              >
+                {formatToMoney(c.price_change_percentage_24h, {
+                  minDecimals: 2,
+                  maxDecimals: 2,
+                })}
+                %
+              </Text>
             </View>
-            <Text
-              style={[
-                styles.change,
-                {
-                  color: c.price_change_percentage_24h >= 0 ? "green" : "red",
-                },
-              ]}
-            >
-              {formatToMoney(c.price_change_percentage_24h, {
-                minDecimals: 2,
-                maxDecimals: 2,
-              })}
-              %
-            </Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -107,10 +108,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 16,
   },
-  icon: { width: 32, height: 32 },
-  info: { flex: 1 },
-  name: { fontWeight: "bold" },
-  price: { fontSize: 14, color: "#555" },
+  icon: { width: 48, height: 48 },
+  infoContainer: { flex: 1 },
+  priceContainer: { flex: 1, alignItems: "flex-end" },
+  name: { fontWeight: "bold", fontSize: 18 },
+  symbol: { fontWeight: "500" },
+  price: { fontWeight: "bold", fontSize: 18 },
   change: { fontWeight: "600" },
 });
 
